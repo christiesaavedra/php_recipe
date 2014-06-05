@@ -1,0 +1,179 @@
+<div class="container-fluid">
+    <br>
+    <br>
+    <div class="col-md-6">
+        <!--Column 1-->
+
+         <h1><strong>Add A New Recipe</strong></h1>
+    </br>
+        <form class="form-inline" role="form">
+
+            <div class="form-group">
+               <label>Recipe Name: </label>
+    <input class="form-control"
+           type="text"
+           placeholder="Name your recipe!" ng-model="recipe.name"
+           typeahead="recipe.name for recipe in recipes | filter:$viewValue | limitTo:8">
+        <label>&nbsp;</label>
+     <label>Author: </label>
+    <input class="form-control"
+           type="text"
+           placeholder="Where did you get this?"
+           ng-model="recipe.author"
+           typeahead="recipe.author for recipe in recipes | filter:$viewValue | limitTo:8">
+        <label>&nbsp;</label>
+       <label> Time: </label>
+    <input class="form-control"
+           type="text"
+           ng-model="recipe.cook_time"
+           placeholder="Total time to prepare?">
+            </div>
+        </form>
+
+    <br>
+    <br>
+ <form class="form-inline" role="form">
+   <div class="form-group">
+        <label> Simple Description: </label>
+        <input  id="description-input"
+                class="form-control form-inline"
+                type="text"
+                ng-model="recipe.description"
+                typeahead="recipe.description for recipe in recipes | filter:$viewValue | limitTo:8"
+                placeholder="1 line description of recipe">
+   </div>
+</form>
+    <!--<input type="text" ng-model="recipe.description">-->
+    <br>
+    <br>
+        <form class="form-inline" role="form" ng-submit="saveTag(tagName)">
+
+            <div class="form-group">
+                <label> Tags For Recipe:</label>
+                <input id="tag-input"
+                       class="form-control form-inline"
+                       type="text"
+                       ng-model="tagName"
+                       typeahead="tag.name for tag in tags | filter:$viewValue | limitTo:8"
+                       placeholder="Tag your recipe">
+                <button ng-click="saveTag(tagName)"
+                        class="add-tag-button btn btn-sm btn-info">Add Tag
+                </button>
+            </div>
+        </form>
+
+                <div>
+                    <button ng-repeat="tag in recipe.tags"
+                        ng-click="removeTag(tag)"
+                        ng-bind="tag.name"
+                        ng-class-even="'btn btn-xs btn-info'"
+                        ng-class-odd="'btn btn-xs btn-success'"
+                        style="margin-right:5px">
+                    </button>
+                </div>
+
+            <!--    <button ng-click="saveTag(tagName)"
+                        class="add-tag-button btn btn-sm btn-info">Add Tag
+                </button>
+                <ol>
+                    <li ng-repeat="tag in recipe.tags">
+                        <span ng-bind="tag.name"></span>
+                    </li>
+                </ol>
+                -->
+    <br>
+
+    </br>
+         <form class="form-inline" role="form">
+            <div class="form-group">
+    <label> Ingredients For Recipe:</label>
+    <input class="form-control" type="text" placeholder="Ingredient name"
+           ng-model="ingredient.name"
+           typeahead="ingredient.name for ingredient in ingredients | filter:$viewValue | limitTo:8">
+            </div>
+            <button ng-click="saveIngredient(ingredientName)"
+                        class="add-tag-button btn btn-sm btn-info">Add Ingredient
+            </button>
+       <!--    <ol>
+                <li ng-repeat="ingredient in recipe.ingredients">
+                    <span ng-bind="ingredient.name"></span>
+                </li>
+           </ol> -->
+
+                <ol>
+                    <li ng-repeat="ingredient in recipe.ingredients">{{ ingredient.name }}</li>
+                </ol>
+
+        </form>
+
+    <br>
+    <br>
+
+        <form  role="form">
+
+            <div class="form-group">
+      <label> Detailed Recipe Directions </label>
+    <textarea class="form-control" rows="5"
+              placeholder="Enter in Detailed Directions (Please Format Ex: Part 1:  Step 1) At the conclusion of the directions please specify cook method, temperature, tools needed for preparation "ng-model="recipe.detailed_directions" ></textarea>
+
+     <br>
+    <br>
+
+          <label> Note: </label>
+    <textarea class="form-control"  rows="2" ng-model="recipe.note"
+           placeholder="** This recipe was originally made by your great great great..."></textarea>
+            </div>
+        </form>
+     <br>
+    <br>
+          <button ng-click="saveNewRecipe()"
+                        class="add-recipe-button btn btn-sm btn-info">Add New Recipe
+                </button>
+ <br>
+        <p>{{ status }}</p>
+        <p>{{ recipe.tags }}</p>
+        <p>{{ item }}</p>
+
+        </div>
+
+<div style="padding-top: 25px; float: right;">
+<form class="form-inline" role="form">
+<h3><strong>Add A New Ingredient</strong></h3>
+            <div class="form-group">
+      <input class="form-control"  type="text" ng-model="ingredientName" placeholder="Enter an Ingredient">
+            <input class="form-control"  type="text" ng-model="glycemicIndex" placeholder="Enter Glycemic Index">
+                &nbsp;
+                  <button ng-click="saveIngredient(ingredientName)"
+                        class="add-tag-button btn btn-sm btn-info">Add Ingredient
+                </button>
+                 <ol>
+                     <li ng-repeat="ingredient in recipe.ingredients">
+                         <span ng-bind="ingredient.name"></span>
+                     </li>
+                </ol>
+            </div>
+        </form>
+    </div>
+
+    <div style="width:473px;height:400px;display:block;float:right;margin-top:200px">
+        <form role="form">
+        <h3><strong>Selected Ingredient List</strong></h3>
+            <!--<div style="height:50px">
+                    <button ng-repeat="ingredientId in recipe.ingredients"
+                        ng-click="removeTag(tag)"
+                        ng-bind="getIngredientName(ingredientId"
+                        ng-class-even="'btn btn-xs btn-info'"
+                        ng-class-odd="'btn btn-xs btn-success'"
+                        style="margin-right:5px">
+                    </button>
+                </div>-->
+            <ol>
+                <li ng-repeat="ingredientId in recipe.ingredients">
+                    <p ng-bind="getIngredientName(ingredientId)">
+                    </p>
+                <i class="glyphicon glyphicon-remove-circle"></i>
+                </li>
+            </ol>
+        </form>
+    </div>
+</div>

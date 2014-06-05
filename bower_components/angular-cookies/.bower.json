@@ -1,0 +1,18 @@
+{
+  "name": "angular-cookies",
+  "version": "1.2.17-build.225+sha.9227a5d",
+  "main": "./angular-cookies.js",
+  "dependencies": {
+    "angular": "1.2.17-build.225+sha.9227a5d"
+  },
+  "homepage": "https://github.com/angular/bower-angular-cookies",
+  "_release": "1.2.17-build.225+sha.9227a5d",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.2.17-build.225+sha.9227a5d",
+    "commit": "5c338d225484903e791b83e2c69c8aff44c86a6b"
+  },
+  "_source": "git://github.com/angular/bower-angular-cookies.git",
+  "_target": "~1.2.0-rc.2",
+  "_originalSource": "angular-cookies"
+}
