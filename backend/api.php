@@ -73,7 +73,37 @@
 				$this->response('Could not find that function.', 404);
 				//$this->response('',404);				// If the method not exist with in this class, response would be "Page not found".
 		}
-		
+
+		private function ingredients(){
+			$sql = mysql_query("SELECT * from ingredient", $this->db);
+			if(mysql_num_rows($sql) > 0){
+				$result = array();
+				while($rlt = mysql_fetch_array($sql,MYSQL_ASSOC)){
+					$result[] = $rlt;
+				}
+				// If success everythig is good send header as "OK" and return list of users in JSON format
+				$this->response($this->json($result), 200);
+			}
+			$this->response('',204);	// If no records "No Content" status
+		}
+		private function tags(){
+			$sql = mysql_query("SELECT * from tag", $this->db);
+			if(mysql_num_rows($sql) > 0){
+				$result = array();
+				while($rlt = mysql_fetch_array($sql,MYSQL_ASSOC)){
+					$result[] = $rlt;
+				}
+				// If success everythig is good send header as "OK" and return list of users in JSON format
+				$this->response($this->json($result), 200);
+			}
+			$this->response('',204);	// If no records "No Content" status
+		}
+
+		private function create_recipe(){
+			$success = print_r($_REQUEST);
+			$this->response($this->json($success),200);
+		}
+
 		private function blah(){
 			$success = array('status' => "Success", "msg" => "blah.");
 			$this->response($this->json($success),200);
